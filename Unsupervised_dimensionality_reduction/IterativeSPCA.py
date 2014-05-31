@@ -74,35 +74,3 @@ class IterativeSPCA():
         return self.components_, self.sT
 
 
-import pandas as pd
-   
-print("start")
-for i in range(10):
-# Set the dataset 
-    X = np.random.random((100, 30))
-    X = sk.preprocessing.scale(X)   # scale the data
-    alpha = 1 # set the penalty
-    nPCs = 4 # set the number of components
-
-    import time
-    start_time = time.time()
-    a = IterativeSPCA(Npc=nPCs, alpha=alpha)
-    sP, sT = a.fit(X[:])
-    time1 = time.time()
-    spca = SparsePCA(n_components=nPCs, alpha=alpha, ridge_alpha=0)
-    spca.fit(X[:])
-    time2 = time.time()
-
-     #df = pd.DataFrame(columns=['it_spc1','spc1'])
-    #df['it_spc1'] = a.components_[:,0]
-    #df['spc1'] = spca.components_.T[:,0]/np.linalg.norm(spca.components_.T[:,0])
-    #df['it_spc2'] = a.components_[:,1]
-    #df['spc2'] = spca.components_.T[:,1]/np.linalg.norm(spca.components_.T[:,1])
-
-
-    #print(df)
-    print("time iterative SPCA=", time1-start_time, "time SparsePCA=", time2-time1)
-
-
-
-print("finish!")
